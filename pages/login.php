@@ -2,12 +2,18 @@
 
 <?php
 
-if (isset($_SESSION['msg_flash'])) {
-	foreach ($_SESSION['msg_flash'] as $type => $msg) {
-		echo '<div id="msg-flash" class="msg-flash '.$type.'" onclick="document.getElementById(\'msg-flash\').style.display=\'none\';">'.$msg.'</div>';
+if (isset($_SESSION['msg_flash']))
+{
+	foreach ($_SESSION['msg_flash'] as $type => $msg)
+	{
+		echo '<div id="msg-flash" class="msg-flash ';
+		echo $type;
+		echo '" onclick="document.getElementById(\'msg-flash\').style.display=\'none\';">';
+		echo $msg;
+		echo '</div>';
 	}
 	unset($_SESSION['msg_flash']);
-	}
+}
 ?>
 
 			<tr>

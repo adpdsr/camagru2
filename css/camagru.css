@@ -126,9 +126,9 @@ label {
 
 #global
 {
-	padding: 100px;
-	width: 500px;
-	height: 400px;
+	padding: 80px;
+	width: 400px;
+	height: 350px;
 	margin: 20px auto;
 	text-align: center;
 	border-radius: 50%;
@@ -207,50 +207,177 @@ input[type=text], input[type=password]
 	box-sizing: border-box;
 }
 
-.msg-flash {
+.msg-flash
+{
+	margin-top: 65px;
+	position: absolute;
 	top: 0;
-	width: 250px;
+	width: 100%;
 	padding: 20px 0px;
 	text-align: center;
-	background: url("../img/template/close.png") right 30px center no-repeat;
-	background-size: 0.8%;
+	background: url("../img/close_cross.svg") right 60px center no-repeat;
+	background-size: 15px;
 }
 
-.msg-flash:hover {
+.msg-flash:hover
+{
 	cursor: pointer;
 }
 
-.success {
+.success
+{
 	background-color: #cefc93;
 	border-bottom: 1px solid #9bdb37;
 }
 
-.alert {
+.alert
+{
 	color: white;
 	background-color: #fc9f93;
 	border-bottom: 1px solid #db4a37;
 }
 
-.info {
+.info
+{
 	color: white;
 	background-color: #fcce93;
 	border-bottom: 1px solid #db9037;
 }
 
-.success,
-.alert,
-.info {
+.success, .alert, .info
+{
 	opacity: 0.92;
 }
 
-/* validation email */
+/* 404 */
 
-.middle {
-	width: auto;
+.middle
+{
+	margin-top: 65px;
+	width: 100%;
 	text-align: center;
+	font-size: 20px;
 }
 
-.middle h1 {
+.middle img
+{
+	min-width: 400px;
+	width: 40%;
+	height: auto;
+}
+
+.middle h1
+{
 	padding-top: 50px;
-	font-size: 40px;
+}
+
+/* HOME */
+
+#home-global
+{
+	width: auto;
+	padding: 10px;
+	margin-top: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.home-container, .warning
+{
+	margin: 20px auto;
+	overflow: hidden;
+	text-align: center;
+	width: auto;
+}
+.home-container .col
+{
+	float: left;
+	width: 100%;
+}
+
+#rates {
+	padding: 20px;
+	color: black;
+}
+
+button
+{
+	font-size: 12px;
+	color: #210021;
+	padding: 10px 20px;    
+	border-radius: 4px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	width: 225px;
+}
+
+video, canvas
+{
+	width: 400px;
+	height: 300px;
+	border: 2px solid black;
+	position: relative;
+}
+
+#overlays {
+	height: auto;
+	width: 100%;
+}
+
+#overlay {
+	margin-top: 30px;
+	max-height: 200px;
+	width: auto;
+	border: 0;
+	background-size: 150px auto;
+}
+
+.grayscale
+{
+	filter: grayscale(1);
+}
+
+.sepia
+{
+	filter: sepia(0.8);
+}
+
+.blur
+{
+	filter: blur(3px);
+}
+
+.brightness
+{
+	filter: brightness(0.3);
+}
+
+.contrast
+{
+	filter: contrast(0.5);
+}
+
+.hue-rotate
+{
+	filter: hue-rotate(90deg);
+}
+
+.hue-rotate2
+{
+	filter: hue-rotate(180deg);
+}
+
+.hue-rotate3
+{
+	filter: hue-rotate(270deg);
+}
+
+.saturate
+{
+	filter: saturate(10);
+}
+
+.invert
+{
+	filter: invert(1);
 }

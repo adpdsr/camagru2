@@ -21,6 +21,9 @@ function send_mail($mail, $login, $action) {
 
 		mail($mail, $object, $content, $header);
 	}
+	else if (!strcmp($action, "reset"))
+	{
+	}
 }
 
 ?>

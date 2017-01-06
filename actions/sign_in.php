@@ -4,9 +4,8 @@ require_once "../config/database.php";
 
 session_start();
 
-if (( $_POST['login'] == "" || $_POST['password'] == ""))
+if (($_POST['login'] == "" || $_POST['password'] == ""))
 {
-	/* if javascript disable */
 	header("Location: ../index.php");
 }
 else
@@ -18,17 +17,23 @@ else
 	{
 		$DB = new PDO($DB_DSN, $DB_USR, $DB_PWD);
 		$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$stmt = $DB->prepare('SELECT * FROM users WHERE login = :login AND password = :password');
-		$stmt->execute(array(
-			':login' => $login,
-			':password' => $password
-		));
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$query = $DB->prepare('SELECT * FROM users WHERE login = :login AND password = :password');
+		$query->execute(array(':login' => $login, ':password' => $password));
+		$data = $query->fetchAll(PDO::FETCH_ASSOC);
+		$data = $data[0];
 		$DB = null;
 		if (!empty($data))
 		{
-			$_SESSION['login'] = $login;
-			header("Location: ../index.php?page=home");
+			if (intval($data['confirmed']) == 1)
+			{
+				$_SESSION['login'] = $login;
+				header("Location: ../index.php?page=home");
+			}
+			else
+			{
+				$_SESSION['msg_flash']['alert'] = "You must confirm your email";
+				header("Location: ../index.php");
+			}
 		}
 		else
 		{
@@ -38,7 +43,7 @@ else
 	}
 	catch(Exception $e)
 	{
-		$_SESSION['msg_flash']['alert'] = "Connexion failed";
+		$_SESSION['msg_flash']['alert'] = "Connexion to database failed";
 		header("Location: ../index.php");
 	}
 }

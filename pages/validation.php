@@ -1,43 +1,49 @@
-
 <?php
 
-echo '<div class="middle">';
-echo 'Confirmation OK, votre compte a bien ete cree';
+require("config/database.php");
+
+session_start();
 
 if (isset($_GET["mail"]))
 {
 	$mail = base64_decode($_GET["mail"]);
-	echo "email = ";
-	echo $mail;
 
-	/* connect to db */
-	/* check if mail exist */
-	/* check if confirmed field is fale */
-	/* update confrimed field to true */
+	try {
+		$DB = new PDO($DB_DSN, $DB_USR, $DB_PWD);
+		$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	/*
-	$email = secure($email, 1);
-	Database::Query('SELECT * FROM accounts WHERE email = "'.$email.'"');
-	if (Database::Get_Rows(NULL))
-	{
-		Database::Fetch_Assoc(NULL);
-		if (intval(Database::$assoc["active"]) == 0)
+		$req = $DB->prepare('SELECT * FROM users WHERE mail = :mail');
+		$req->bindParam(':mail', $mail, PDO::PARAM_STR, 255);
+		$req->execute();
+
+		$data = $req->fetchAll(PDO::FETCH_ASSOC);
+		if (!empty($data))
 		{
-			Database::Query('UPDATE accounts SET active = "1" WHERE email = "'.$email.'"');
-			print_message("Votre compte a été valider, vous pouvez désormais vous connecter !", "success");
+			if (intval($data['confirmed']) == 0)
+			{
+				$_SESSION['msg_flash']['success'] = "Ready to connect !";
+				$DB->exec('UPDATE `users` SET `confirmed` = "1" WHERE mail = "' . $mail . '"');
+				echo '<div class="middle">';
+				echo 'Confirmation OK, votre compte a bien ete cree</br></br>';
+				echo 'Cliquez <a href="index.php"><span>ici</span></a> pour vous connecter</br></br>';
+				echo '</div>';
+			}
+			else
+			{
+				echo "<div class='middle'>email already confirmed</div>";
+			}
 		}
 		else
-			print_message("Votre compte a déjà été activé !", "error");
+		{
+			echo "<div class='middle'>no user for this email</div>";
+		}
+		$DB = null;
 	}
-	else
-		print_message("Cet email n'existe pas :(", "error");
+	catch(PDOException $e)
+	{
+		echo "query failed : " . $e->getMessage();
+		die();
+	}
 }
-else
-	print_message("Une erreur est survenue.", "error");
-	 */
-
-}
-
-echo '</div>';
 
 ?>

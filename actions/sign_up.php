@@ -1,17 +1,19 @@
 <?php
 
-require_once("../config/database.php");
+require_once("../config/database.php"); // a virer
 require_once("../includes/functions/send_mail.php");
 
 session_start();
 
-if (empty($_POST['mail']) ||
-	empty($_POST['login']) ||
-	empty($_POST['password']))
+if (empty($_POST['mail']) || empty($_POST['login']) || empty($_POST['password']))
+{
 	header("Location: ../index.php");
+}
 else
 {
 	$mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
+
+	/* CHECK FIELS VALIDITY */
 	if (filter_var($mail, FILTER_VALIDATE_EMAIL) == false)
 	{
 		$_SESSION['msg_flash']['alert'] = "invalid email";
@@ -21,9 +23,14 @@ else
 		$_SESSION['msg_flash']['alert'] = "invalid login";
 	}
 	else if (!($password = filter_var($_POST['password'], FILTER_SANITIZE_STRING)))
+	{
 		$_SESSION['msg_flash']['alert'] = "invalid password";
+	}
 	if (isset($_SESSION['msg-flash']))
-		header("Location: login.php");
+	{
+		header("Location: ../index.php");
+	}
+
 	$password = hash('whirlpool', $password);
 
 	try
@@ -48,8 +55,9 @@ else
 	}
 
 	send_mail($mail, $login, "confirmation");
-	
-	$_SESSION['msg_flash']['success'] = "Votre compte a bien été créé !";
+
+	$_SESSION['msg_flash']['success'] = "Votre compte a bien été créé, confirmez votre email !";
 	header("Location: ../index.php");
 }
+
 ?>
