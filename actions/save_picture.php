@@ -12,9 +12,7 @@ if (isset($_SESSION['login']) &&
 	$name = time() . '.png';
 	$data = $_POST['data'];
 	$user = $_SESSION['login'];
-	$path = 'img/users/' . $user . '/';
-
-	echo $overlay;
+	$path = '../img/users/' . $user . '/';
 
 	if (!file_exists($path))
 	{
@@ -61,12 +59,18 @@ if (isset($_SESSION['login']) &&
 
 		imagecopy($result, $picture, 0, 0, 0, 0, $width_x, $height_x);
 
-		if (($overlay_ratio != $picture_ratio) && ($overlay_path != "frame1.png") && ($overlay_path != "frame2.png") && ($overlay_path != "frame3.png") && ($overlay_path != "frame4.png"))
+		if (($overlay_ratio != $picture_ratio) &&
+			($overlay_path != "frame1.png") &&
+			($overlay_path != "frame2.png") &&
+			($overlay_path != "frame3.png") &&
+			($overlay_path != "frame4.png"))
 		{
-			if (($width_x / $width_y) < ($height_x / $height_y)) {
+			if (($width_x / $width_y) < ($height_x / $height_y))
+			{
 				$ratio = $width_x / $width_y;
 			}
-			else {
+			else
+			{
 				$ratio = $height_x / $height_y;
 			}
 			$new_x = $width_y * $ratio;
@@ -78,7 +82,6 @@ if (isset($_SESSION['login']) &&
 			imagecopyresampled($result, $overlay, 0, 0, 0, 0, $width_x, $height_x, $width_y, $height_y);
 		}
 		imagepng($result, $result_path);
-		echo $result_path;
 		imagedestroy($result);
 		imagedestroy($picture);
 		imagedestroy($overlay);
@@ -89,19 +92,20 @@ if (isset($_SESSION['login']) &&
 	if ($final_data !== false)
 	{
 		apply_filter($final_data, $_POST['effect']);
-		if (isset($overlay) && strcmp($overlay, "index.php?page=home") != 0)
-		{
-			print($overlay);
-			apply_overlay($final_data, $overlay, $path.$name);
-		}
+		apply_overlay($final_data, $overlay, $path.$name);
 	}
 
 	require_once('../config/database.php');
 
-	$bdd = new PDO($DB_DSN, $DB_USR, $DB_PWD);
-	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$stmt = $bdd->prepare('INSERT INTO pictures (user, likes, path) VALUES (:user, :likes, :path)');
+	$DB = new PDO($DB_DSN, $DB_USR, $DB_PWD);
+	$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$stmt = $DB->prepare('INSERT INTO pictures (user, likes, path) VALUES (:user, :likes, :path)');
 	$stmt->execute(array(':user' => $user, ':likes' => 0, ':path' => $path.$name));
+
+	$DB = null;
+
+	echo '<img src="' . $path.$name . '">';
+	// close co
 }
 else {
 	echo "an error occured";

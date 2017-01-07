@@ -19,11 +19,12 @@ require_once("includes/templates/header.php");
 
 if (!isset($_SESSION['login']) && empty($_GET['mail']))
 {
+//	echo "t1";
 	include("pages/login.php");
 }
 else if (isset($_GET['page']))
 {
-	echo "t2";
+//	echo "t2";
 	get_page($_GET['page']);
 }
 
