@@ -13,21 +13,20 @@ else
 {
 	$mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
 
-	/* CHECK FIELS VALIDITY */
-	if (filter_var($mail, FILTER_VALIDATE_EMAIL) == false)
-	{
+	/* CHECK FIELDS VALIDITY */
+	if (filter_var($mail, FILTER_VALIDATE_EMAIL) == false) {
 		$_SESSION['msg_flash']['alert'] = "invalid email";
 	}
-	else if (!($login = filter_var($_POST['login'], FILTER_SANITIZE_STRING)))
-	{
+	else if (!($login = filter_var($_POST['login'], FILTER_SANITIZE_STRING))) {
 		$_SESSION['msg_flash']['alert'] = "invalid login";
 	}
-	else if (!($password = filter_var($_POST['password'], FILTER_SANITIZE_STRING)))
-	{
+	else if (!($password = filter_var($_POST['password'], FILTER_SANITIZE_STRING))) {
 		$_SESSION['msg_flash']['alert'] = "invalid password";
 	}
-	if (isset($_SESSION['msg-flash']))
-	{
+	else if (strlen($password) < 6) {
+		$_SESSION['msg_flash']['alert'] = "password must contain 6 characters or longer";
+	}
+	if (isset($_SESSION['msg-flash']['alert'])) {
 		header("Location: ../index.php");
 	}
 
