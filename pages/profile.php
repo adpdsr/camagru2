@@ -48,8 +48,15 @@ if (isset($_SESSION['login'])) {
 
 	if (!empty($data))
 	{
-		foreach ($data as $row) {
-			echo "<img onclick='' class='profile-pic' src=\"" . substr($row['path'], 3) . "\"/>";
+		foreach ($data as $row)
+		{
+			$pic_name = substr($row['path'], 3);
+			echo "<div style='display:inline-block'>";
+			echo "	<img onclick='' class='profile-pic' src=\"" . $pic_name . "\"/>";
+			echo "	<form method='post' action='actions/delete_photo.php'>";
+			echo "		<input id='del_button' type='submit' name='" . $pic_name . "' value='delete'>";
+			echo "	</form>";
+			echo "</div>";
 		}
 	}
 }

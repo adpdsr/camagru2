@@ -23,13 +23,30 @@ if (isset($_SESSION['login'])) {
 	if (!empty($data))
 	{
 		foreach ($data as $row) {
-			echo "<img onclick='' class='profile-pic' src=\"" . substr($row['path'], 3) . "\"/>";
+			$pic_name = substr($row['path'], 3);
+			echo "<div style='display:inline-block'>";
+			echo "	<img class='profile-pic' src=\"" . $pic_name . "\"/>";
+			echo "	<from method='post' action='actions/likes.php'>";
+			echo "		<input id='like-button' type='submit' name='" . $pic_name . "' value='like'>";
+			echo "		<button class='" . $pic_name . "' onclick=\"document.getElementById('id01').style.display='block'\" style='width:auto;'>comment</button>";
+			echo "	</form>";
+			/*echo "
+				<form method='post' class='modal-content' action='actions/comment.php'>
+				<div class='form-container' style='background-color:#f1f1f1; text-align:center;'>
+				<h2>Comment</h2>
+				</div>
+				<div class='form-container'>
+				<textarea name='comment' id='comments' cols='34' rows='4' required></textarea>
+				<button type='submit' name='toto'>send</button>
+				</div>
+				</form>
+				";*/
+			echo "</div>";
 		}
 	}
 }
 else
 	echo "<div><center>no user</center></div>";
-
 ?>
 
 			</td>
