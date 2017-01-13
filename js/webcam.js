@@ -7,18 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	var context = canvas.getContext('2d');
 	var iFilter = 0;
 	var filters = [
-	'grayscale',
-'sepia',
-'blur',
-'brightness',
-'contrast',
-'hue-rotate',
-'hue-rotate2',
-'hue-rotate3',
-'saturate',
-'invert',
-'none'
-	];
+		'grayscale',
+		'sepia',
+		'brightness',
+		'contrast',
+		'hue-rotate',
+		'hue-rotate2',
+		'hue-rotate3',
+		'saturate',
+		'invert',
+		'none'];
 
 navigator.getUserMedia = navigator.getUserMedia ||
 	navigator.webkitGetUserMedia ||
@@ -125,15 +123,14 @@ savebutton.addEventListener('click', function(ev) {
 
 document.querySelector('button').addEventListener('click', function() {
 	video.className = 'none';
-	if (iFilter == filters.length)
-{
-	iFilter = 0;
-}
-var effect = filters[iFilter++ % filters.length];
-if (effect) {
-	console.log(effect);
-	video.classList.add(effect);
-}
+	if (iFilter == filters.length) {
+		iFilter = 0;
+	}
+	var effect = filters[iFilter++ % filters.length];
+	if (effect) {
+		console.log(effect);
+		video.classList.add(effect);
+	}
 }, false);
 }, false);
 

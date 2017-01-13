@@ -36,7 +36,7 @@ dbQuery($dbc, "CREATE TABLE `comments` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
 	`content` TEXT NOT NULL,
 	`picture_id` INT NOT NULL,
-	`user_id` varchar(255) NOT NULL,
+	`user` varchar(255) NOT NULL,
 	`date` datetime NOT NULL)");
 
 dbQuery($dbc, "CREATE TABLE `likes` (

@@ -373,14 +373,9 @@ video, canvas
 	filter: sepia(0.8);
 }
 
-.blur
-{
-	filter: blur(3px);
-}
-
 .brightness
 {
-	filter: brightness(0.3);
+	filter: brightness(0.5);
 }
 
 .contrast
@@ -390,7 +385,7 @@ video, canvas
 
 .hue-rotate
 {
-	filter: hue-rotate(90deg);
+	filter: hue-rotate(60deg);
 }
 
 .hue-rotate2

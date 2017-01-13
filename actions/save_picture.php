@@ -23,23 +23,53 @@ if (isset($_SESSION['login']) &&
 	$data = str_replace('data:image/png;base64,','', $data);
 	$data = base64_decode($data);
 
+	function imagefilterhue($im,$r,$g,$b){
+		$rgb = $r+$g+$b;
+		$col = array($r/$rgb,$b/$rgb,$g/$rgb);
+		$height = imagesy($im);
+		$width = imagesx($im);
+		for($x=0; $x<$width; $x++){
+			for($y=0; $y<$height; $y++){
+				$rgb = ImageColorAt($im, $x, $y);
+				$r = ($rgb >> 16) & 0xFF;
+				$g = ($rgb >> 8) & 0xFF;
+				$b = $rgb & 0xFF;
+				$newR = $r*$col[0] + $g*$col[1] + $b*$col[2];
+				$newG = $r*$col[2] + $g*$col[0] + $b*$col[1];
+				$newB = $r*$col[1] + $g*$col[2] + $b*$col[0];
+				imagesetpixel($im, $x, $y, imagecolorallocate($im, $newR, $newG, $newB));
+			}
+		}
+	}
+
+
 	function apply_filter($img, $effect)
 	{
-		if ($effect == "grayscale") {
+		if ($effect == "grayscale") {								// OK
 			imagefilter($img, IMG_FILTER_GRAYSCALE);
 		}
-		else if ($effect == "sepia") {
+		else if ($effect == "sepia") {								// OK
 			imagefilter($img, IMG_FILTER_GRAYSCALE);
-			imagefilter($img, IMG_FILTER_COLORIZE, 100, 50, 0);
+			imagefilter($img, IMG_FILTER_COLORIZE, 60, 40, 0);
 		}
-		else if ($effect == "blur") {
-			imagefilter($img, IMG_FILTER_GAUSSIAN_BLUR);
+		else if ($effect == "brightness") {							// OK
+			imagefilter($img, IMG_FILTER_BRIGHTNESS, -255 / 3.5);
 		}
-		else if ($effect == "brightness") {
-			imagefilter($img, IMG_FILTER_BRIGHTNESS, -255 / 2);
+		else if ($effect == "contrast") {							// OK
+			imagefilter($img, IMG_FILTER_BRIGHTNESS, 255 / 4);
 		}
-		else if ($effect == "contrast") {
-			imagefilter($img, IMG_FILTER_CONTRAST, 0.5);
+		else if ($effect == "hue-rotate") {							// OK
+			imagefilterhue($img, 100, 100, 0);
+		}
+		else if ($effect == "hue-rotate2") {						// OK
+			imagefilterhue($img, 0, 140, 80);
+		}
+		else if ($effect == "hue-rotate3") {
+			imagefilterhue($img, 100, 100, 200);
+		}
+		else if ($effect == "saturate") {
+		}
+		else if ($effect == "invert") {
 		}
 	}
 
