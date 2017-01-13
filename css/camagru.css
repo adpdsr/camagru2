@@ -280,9 +280,8 @@ input[type=text], input[type=password]
 /* HOME */
 
 #capt-container {
-	background: url(../img/tweed.png);
 	background-repeat: repeat;
-	padding: 10px; /* aération interne des blocs */
+	padding: 10px;
 	border: 1px solid #fff;
 	display: inline-block;
 	vertical-align: middle;
@@ -431,3 +430,6 @@ video, canvas
 }
 
 /* GALLERY */
+.gallery-item {
+	background-color: black;
+}

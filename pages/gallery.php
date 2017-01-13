@@ -1,9 +1,8 @@
-<div id="home-global">
-	<div id="cam-container">
-		<tr>
-			<td>
+<div id='gallery-container' style='width: 80%; margin: 50px auto; padding-top: 50px; overflow: hidden;'>
 
 <?php
+
+session_start();
 
 if (isset($_SESSION['login'])) {
 
@@ -22,25 +21,21 @@ if (isset($_SESSION['login'])) {
 
 	if (!empty($data))
 	{
-		foreach ($data as $row) {
+		foreach ($data as $row)
+		{
 			$pic_name = substr($row['path'], 3);
-			echo "<div style='display:inline-block'>";
-			echo "	<img class='profile-pic' src=\"" . $pic_name . "\"/>";
-			echo "	<from method='post' action='actions/likes.php'>";
-			echo "		<input id='like-button' type='submit' name='" . $pic_name . "' value='like'>";
-			echo "		<button class='" . $pic_name . "' onclick=\"document.getElementById('id01').style.display='block'\" style='width:auto;'>comment</button>";
-			echo "	</form>";
-			/*echo "
-				<form method='post' class='modal-content' action='actions/comment.php'>
-				<div class='form-container' style='background-color:#f1f1f1; text-align:center;'>
-				<h2>Comment</h2>
-				</div>
-				<div class='form-container'>
-				<textarea name='comment' id='comments' cols='34' rows='4' required></textarea>
-				<button type='submit' name='toto'>send</button>
-				</div>
-				</form>
-				";*/
+
+			echo "<div style='background-color: #292c2f; padding: 10px; color: #797478; width: 20%; margin: 0% 2% 2% 0%; float: left;'>";
+			echo "<a href='#'><img src='" . $pic_name . "' alt='' style='max-width: 100%; border-radius: 5px;'></a>";
+
+			echo "<form method='post' action='actions/likes.php' style='margin-bottom:5px;'>";
+			echo "	<input type='submit' name='" .$pic_name. "' value='like' style='width:100%; margin-top:5px;'/>";
+			echo "</form>";
+
+			echo "<form method='post' action='actions/comment.php' style='margin-bottom:0px;'>";
+			echo "	<textarea placeholder='type your comment here' style='width: 100%;' name='comment' required></textarea>";
+			echo "	<input type='submit' name='" . $pic_name. "'/ style='width:100%; margin-top:5px;'>";
+			echo "</form>";
 			echo "</div>";
 		}
 	}
@@ -49,7 +44,4 @@ else
 	echo "<div><center>no user</center></div>";
 ?>
 
-			</td>
-		</tr>
-	</div>
 </div>
