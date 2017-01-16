@@ -63,12 +63,13 @@ if (isset($_SESSION['login']))
 	else {
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			require_once('../config/database.php');
+			$date = date("Y-m-d H:i:s");
 			$_SESSION['msg_flash']['success'] = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded";
 			$DB = new PDO($DB_DSN, $DB_USR, $DB_PWD);
 			$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-			$stmt = $DB->prepare('INSERT INTO pictures (user, likes, path) VALUES (:user, :likes, :path)');
-			$stmt->execute(array(':user' => $user, ':likes' => 0, ':path' => $target_file));
+			$stmt = $DB->prepare('INSERT INTO pictures (user, likes, path, date) VALUES (:user, :likes, :path, :date)');
+			$stmt->execute(array(':user' => $user, ':likes' => 0, ':path' => $target_file, ':date' => $date));
 
 			$DB = null;
 		}

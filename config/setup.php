@@ -30,7 +30,8 @@ dbQuery($dbc, "CREATE TABLE `pictures` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
 	`user` VARCHAR(255) NOT NULL,
 	`path` VARCHAR(255) NOT NULL,
-	`likes` INT NOT NULL DEFAULT 0)");
+	`likes` INT NOT NULL DEFAULT 0,
+	`date` datetime NOT NULL)");
 
 dbQuery($dbc, "CREATE TABLE `comments` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,

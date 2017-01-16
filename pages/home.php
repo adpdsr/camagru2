@@ -1,7 +1,7 @@
 <div id="home-global">
 	<div id="capt-container"></div>
 	<div class="home-container">
-		<button style="margin-top: 0px;">Click here to change video filter</button>
+		<button style="margin-top: 0px;">Appliquez un filtre</button>
 		<div style="clear:both"></div>
 			<div class="col">
 				<video></video>
@@ -24,3 +24,5 @@
 		</div>
 	</div>
 </div>
+
+<script src='js/webcam.js'></script>

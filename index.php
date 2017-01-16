@@ -8,7 +8,6 @@ echo "<html>
 		<meta charset='UTF-8'>
 		<title>camagru</title>
 		<link rel='stylesheet' href='css/camagru.css'>
-		<script src='js/webcam.js'></script>
 	</head>
 	<body>
 ";

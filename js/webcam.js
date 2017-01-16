@@ -41,7 +41,6 @@ if (navigator.getUserMedia)
 	function onErrorCallback(e) {
 		var expl = 'An error occurred: [Reason: ' + e.code + ']';
 		console.error(expl);
-		alert(expl);
 		return;
 	}
 }
@@ -70,11 +69,8 @@ function takePicture() {
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 
 	var data = canvas.toDataURL('image/png');
-	console.log(iFilter);
-	console.log(filters.length);
 	var effect = filters[iFilter - 1 % filters.length];
 	if (effect) {
-		console.log(effect);
 		data = canvas.classList.add(effect);
 	}
 }
@@ -128,7 +124,7 @@ document.querySelector('button').addEventListener('click', function() {
 	}
 	var effect = filters[iFilter++ % filters.length];
 	if (effect) {
-		console.log(effect);
+	//	console.log(effect);
 		video.classList.add(effect);
 	}
 }, false);

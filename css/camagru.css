@@ -331,7 +331,7 @@ input[type=text], input[type=password]
 	color: black;
 }
 
-button
+.home-container button
 {
 	font-size: 12px;
 	color: #210021;
@@ -339,7 +339,7 @@ button
 	border-radius: 4px;
 	margin-bottom: 20px;
 	margin-top: 20px;
-	width: 225px;
+	width: 200px;
 }
 
 video, canvas
@@ -400,7 +400,7 @@ video, canvas
 
 .saturate
 {
-	filter: saturate(10);
+	filter: saturate(6);
 }
 
 .invert
@@ -425,6 +425,23 @@ video, canvas
 }
 
 /* GALLERY */
-.gallery-item {
-	background-color: black;
+
+.gallery_container {
+	width: 20%;
+	margin: 50px auto;
+	padding-top: 50px;
+	overflow: hidden;
+
 }
+
+.gallery-item {
+	background-color: #292c2f;
+	padding: 10px;
+	color: #797478;
+	width: 20%;
+	margin: 0% 2% 2% 0%;
+	float: left;
+}
+
+/* TEST */
+

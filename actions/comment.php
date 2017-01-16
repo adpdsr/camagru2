@@ -38,12 +38,14 @@ if (isset($_POST['comment']) && $_SESSION['login'])
 //	echo "comm user  : " . $usr_login . "</br>";	//
 //	echo "comm : " . $time . "</br>";			//
 
-	$sql = "INSERT INTO comments(content, picture_id, user_id, date) VALUES ('".$com."', '".$pic_id."', '".$usr_login."', '".$time."')";
+	$sql = "INSERT INTO comments(content, picture_id, user, date) VALUES ('".$com."', '".$pic_id."', '".$usr."', '".$time."')";
 	$dbc->query($sql);
 
 	send_mail($usr_mail, $pic_usr, "comment");
 
 	$dbc = null;
 }
+
+header('Location: ../index.php?page=gallery');
 
 ?>

@@ -25,9 +25,8 @@ if (isset($_SESSION['msg_flash']))
 				<input type="submit" value="Upload Image" name="submit">
 			</form>
 			<!-- photos de l'utilisateur -->
-			<div id="cam-container">
-				<tr>
-					<td>
+			<div id='gallery-container'>
+
 <?php
 
 if (isset($_SESSION['login'])) {
@@ -51,22 +50,21 @@ if (isset($_SESSION['login'])) {
 		foreach ($data as $row)
 		{
 			$pic_name = substr($row['path'], 3);
-			echo "<div style='display:inline-block'>";
-			echo "	<img onclick='' class='profile-pic' src=\"" . $pic_name . "\"/>";
-			echo "	<form method='post' action='actions/delete_photo.php'>";
-			echo "		<input id='del_button' type='submit' name='" . $pic_name . "' value='delete'>";
-			echo "	</form>";
+			echo "<div style='background-color: #292c2f; padding: 10px; color: #797478; width: 20%; margin: 0% 2% 2% 0%; float: left;'>";
+			echo "<a href='#'><img src='" . $pic_name . "' alt='' style='max-width: 100%; border-radius: 5px;'></a>";
+			echo "<form method='post' action='actions/delete_photo.php' style='margin: 0px;'>";
+			echo	 "<input type='submit' name='" . $pic_name . "' value='delete' style='width: 100%; margin-top: 10px;'>";
+			echo "</form>";
 			echo "</div>";
 		}
 	}
+	else
+	{
+		echo "<div><center>no photo</center></div>";
+	}
+	echo "</div></div>";
 }
 else
 	echo "<div><center>no user</center></div>";
-?>
-					</td>
-				</tr>
-			</div>
 
-			<div id="pic-container">
-			</div>
-		</div>
+?>
