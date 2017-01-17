@@ -11,8 +11,9 @@
 .mail-page2 {
 	text-align: center;
 	padding: 30px;
-	margin : 20% auto;
+	margin : 100px auto;
 	width: 30%;
+	min-width: 320px;
 	background-color: #292c2f;
 	border-radius: 25px;
 	color: floralwhite;
@@ -47,12 +48,13 @@ if (isset($_GET["mail"]))
 			{
 				$_SESSION['msg_flash']['success'] = "Ready to connect !";
 				$DB->exec('UPDATE `users` SET `confirmed` = "1" WHERE mail = "' . $mail . '"');
-				echo '<div class="mail-page1">';
-				echo '<div class="mail-page2">';
-				echo 'Confirmation OK, votre compte a bien ete cree</br></br>';
-				echo 'Cliquez <a href="index.php"><span>ici</span></a> pour vous connecter</br>';
-				echo '</div>';
-				echo '</div>';
+				echo '<div class="mail-page1">
+					<div class="mail-page2">
+					Confirmation OK, votre compte a bien ete cree</br></br>
+					Cliquez <a href="index.php"><span>ici</span></a> pour vous connecter</br>
+					</div>
+					</div>
+					';
 			}
 			else
 			{
