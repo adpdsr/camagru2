@@ -7,7 +7,7 @@ echo "<html>
 	<head>
 		<meta charset='UTF-8'>
 		<title>camagru</title>
-		<link rel='stylesheet' href='css/camagru.css'>
+		<link rel='stylesheet' href='http://localhost:8080/camagru_v2/css/camagru.css'>
 	</head>
 	<body>
 ";
@@ -22,6 +22,12 @@ else if (isset($_GET['page']))
 {
 	get_page($_GET['page']);
 }
+else if (isset($_SESSION['login']))
+{
+	include("pages/home.php");
+}
+else
+	include("page/login.php");
 
 require_once("includes/templates/footer.php");
 
