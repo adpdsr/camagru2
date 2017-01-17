@@ -1,66 +1,6 @@
 <html>
 <head>
-
-<style>
-
-div.img
-{
-	border: 1px solid #ccc;
-}
-
-div.img:hover
-{
-	border: 1px solid #777;
-}
-
-div.img img
-{
-	width: 100%;
-	height: auto;
-}
-
-div.DESC
-{
-	padding: 15px;
-	text-align: center;
-}
-
-*
-{
-box-sizing: border-box;
-}
-
-.responsive
-{
-	padding: 0 6px;
-	float: left;
-	width: 24.99999%;
-	margin-bottom: 20px;
-}
-
-@media only screen and (max-width: 900px)
-{
-	.responsive {
-		width: 49.99999%;
-		margin: 6px 0;
-	}
-}
-
-@media only screen and (max-width: 500px)
-{
-	.responsive {
-		width: 100%;
-	}
-}
-
-.clearfix:after 
-{
-	content: "";
-	display: table;
-	clear: both;
-}
-</style>
-
+<link rel='stylesheet' href='css/gallery.css'>
 </head>
 <body>
 
@@ -83,6 +23,7 @@ if (isset($_SESSION['login'])) {
 	$DB = null;
 
 	if (!empty($data)) {
+
 		foreach ($data as $row) {
 
 			$pic_name = substr($row['path'], 3);

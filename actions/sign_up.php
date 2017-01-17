@@ -13,7 +13,6 @@ else
 {
 	$mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
 
-	/* CHECK FIELDS VALIDITY */
 	if (filter_var($mail, FILTER_VALIDATE_EMAIL) == false) {
 		$_SESSION['msg_flash']['alert'] = "invalid email";
 	}

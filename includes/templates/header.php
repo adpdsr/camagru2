@@ -1,6 +1,6 @@
 <div class="fixed-header">
 	<div class="container">
-		<h1><a href="#">Cama<span>gru</span></a></h1>
+		<h1><a href="http://localhost:8080/camagru_v2/index.php">Cama<span>gru</span></a></h1>
 
 <?php
 

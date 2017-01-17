@@ -31,13 +31,6 @@ if (isset($_POST['comment']) && $_SESSION['login'])
 	$usr_login = $row->login;
 	$time = date("Y-m-d H:i:s");
 
-//	echo "picture id   : " . $pic_id . "</br>";		//
-//	echo "picture user : " . $pic_usr . "</br>";	//
-//	echo "user mail    : " . $usr_mail . "</br>";	//
-//	echo "commentaire  : " . $com . "</br>";		//
-//	echo "comm user  : " . $usr_login . "</br>";	//
-//	echo "comm : " . $time . "</br>";			//
-
 	$sql = "INSERT INTO comments(content, picture_id, user, date) VALUES ('".$com."', '".$pic_id."', '".$usr."', '".$time."')";
 	$dbc->query($sql);
 
