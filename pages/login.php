@@ -2,6 +2,8 @@
 
 <?php
 
+session_start();
+
 if (isset($_SESSION['msg_flash']))
 {
 	foreach ($_SESSION['msg_flash'] as $type => $msg)

@@ -46,11 +46,11 @@ if (isset($_GET["mail"]))
 		{
 			if (intval($data['confirmed']) == 0)
 			{
-				$_SESSION['msg_flash']['success'] = "Ready to connect !";
+				$_SESSION['msg_flash']['success'] = "Prêt à vous connecter !";
 				$DB->exec('UPDATE `users` SET `confirmed` = "1" WHERE mail = "' . $mail . '"');
 				echo '<div class="mail-page1">
 					<div class="mail-page2">
-					Confirmation OK, votre compte a bien ete cree</br></br>
+					Votre compte a bien été activé</br></br>
 					Cliquez <a href="index.php"><span>ici</span></a> pour vous connecter</br>
 					</div>
 					</div>
@@ -58,12 +58,12 @@ if (isset($_GET["mail"]))
 			}
 			else
 			{
-				echo "<div class='mail-page'>email already confirmed</div>";
+				echo "<div class='mail-page'>Votre email a déjà été envoyé activé</div>";
 			}
 		}
 		else
 		{
-			echo "<div class='mail-page'>no user for this email</div>";
+			echo "<div class='mail-page'>Aucun utilisateur ne correspond à cet email</div>";
 		}
 		$DB = null;
 	}
@@ -75,7 +75,7 @@ if (isset($_GET["mail"]))
 }
 else
 {
-	echo '<div class="mail-page">An error occured, please try again</div>';
+	echo '<div class="mail-page">Une erreur est survenue, veuillez reéssayer</div>';
 }
 
 ?>

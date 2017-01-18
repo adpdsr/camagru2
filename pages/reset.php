@@ -57,7 +57,7 @@ if (isset($_GET['mail']))
 					{
 						echo '<div class="mail-page1">
 							<div class="mail-page2">
-							Nouveau mot de passe OK</br></br>
+							Nouveau mot de passe validé</br></br>
 							Cliquez <a href="index.php"><span>ici</span></a> pour vous connecter</br>
 							</div>
 							</div>
@@ -65,32 +65,32 @@ if (isset($_GET['mail']))
 					}
 					else
 					{
-						echo '<div class="middle">An error occured, please try again</div>';
+						echo '<div class="middle">Une erreur est survenue veuillez réessayer</div>';
 					}
 				}
 				else
 				{
-					echo '<div class="middle">An error occured, please try again</div>';
+					echo '<div class="middle">Une erreur est survenue veuillez réessayer</div>';
 				}
 			}
 			else
 			{
-				echo '<div class="middle">An error occured, please try again</div>';
+				echo '<div class="middle">Une erreur est survenue veuillez réessayer</div>';
 			}
 		}
 		else
 		{
-			echo '<div class="middle">An error occured, please try again</div>';
+			echo '<div class="middle">Une erreur est survenue veuillez réessayer</div>';
 		}
 	}
 	else
 	{
-		echo '<div class="middle">An error occured, please try again</div>';
+		echo '<div class="middle">Une erreur est survenue veuillez réessayer</div>';
 	}
 }
 else
 {
-	echo '<div class="middle">An error occured, please try again</div>';
+	echo '<div class="middle">Une erreur est survenue veuillez réessayer</div>';
 }
 
 $dbc = null;

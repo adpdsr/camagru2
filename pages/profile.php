@@ -23,13 +23,13 @@ if (isset($_SESSION['msg_flash']))
 
 ?>
 
-<div id="home-global">
-			<!-- formulaire d'upload -->
-			<form action="actions/upload_picture.php" method="post" enctype="multipart/form-data">
-				Upload :
-				<input type="file" name="fileToUpload" id="fileToUpload">
-				<input type="submit" value="Upload Image" name="submit">
-			</form>
+<div style="background-color:#292c2f; border-radius: 10px; color:floralwhite; margin: 80px 10% 0px 10%; padding: 20px 0 5px 0; text-align:center">
+	<!-- formulaire d'upload -->
+	<form action="actions/upload_picture.php" method="post" enctype="multipart/form-data">
+		Upload :
+		<input type="file" name="fileToUpload" id="fileToUpload">
+		<input type="submit" value="Upload Image" name="submit">
+	</form>
 </div>
 
 <?php
@@ -66,14 +66,15 @@ if (isset($_SESSION['login'])) {
 				</div>
 				</div>";
 		}
+		echo '<div class="clearfix"></div>';
 	}
 	else
 	{
-		echo "<div><center>no picture</center></div>";
+		echo "<div><center>Aucunes photos disponibles</center></div>";
 	}
 }
 else {
-	echo "<div><center>no user</center></div>";
+	echo "<div><center>Aucun utilisateur connecte</center></div>";
 }
 echo "</div>";
 

@@ -28,9 +28,6 @@ window.URL = window.URL ||
 	window.mozURL ||
 	window.msURL;
 
-/////////////////////////////////////////////////////////////
-/* If userMedia OK => try start stream, else display error */
-/////////////////////////////////////////////////////////////
 if (navigator.getUserMedia)
 {
 	navigator.getUserMedia({video: true, audio: false}, onSuccessCallback, onErrorCallback);
@@ -92,7 +89,6 @@ function savePicture()
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		http.onreadystatechange = function()
 		{
-			/* a proprifier */
 			if (http.readyState == 4 && http.status == 200) {
 				var img = document.createElement("img");
 				var test0 = http.responseText;
@@ -124,7 +120,6 @@ document.querySelector('button').addEventListener('click', function() {
 	}
 	var effect = filters[iFilter++ % filters.length];
 	if (effect) {
-	//	console.log(effect);
 		video.classList.add(effect);
 	}
 }, false);

@@ -31,19 +31,19 @@ else
 			}
 			else
 			{
-				$_SESSION['msg_flash']['alert'] = "You must confirm your email";
+				$_SESSION['msg_flash']['alert'] = "Veuillez confirmer votre email";
 				header("Location: ../index.php");
 			}
 		}
 		else
 		{
-			$_SESSION['msg_flash']['alert'] = "Incorrect login or password";
+			$_SESSION['msg_flash']['alert'] = "Mauvais login ou mot de passe";
 			header("Location: ../index.php");
 		}
 	}
 	catch(Exception $e)
 	{
-		$_SESSION['msg_flash']['alert'] = "Connexion to database failed";
+		$_SESSION['msg_flash']['alert'] = "Echec de la connexion à la base de donnée";
 		header("Location: ../index.php");
 	}
 }

@@ -12,7 +12,7 @@ if (isset($_POST['login']) && isset($_POST['mail']) && isset($_POST['newpwd']))
 	$mail = $_POST['mail'];
 	$login = $_POST['login'];
 	$newpwd = $_POST['newpwd'];
-	if (strlen($newpwd) > 6)
+	if (preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,16}$/', $newpwd) === 1)
 	{
 		send_mail($mail, $login, 'reset');
 
@@ -38,7 +38,7 @@ if (isset($_POST['login']) && isset($_POST['mail']) && isset($_POST['newpwd']))
 	}
 	else
 	{
-		$_SESSION['msg_flash']['alert'] = "Votre mot de passe doit contenir au moins 6 caractères";
+		$_SESSION['msg_flash']['alert'] = "Le mot de passe doit contenir entre 8 et 16 caractères, au moins un nombre, une majuscule et une minuscule";
 	}
 }
 else
