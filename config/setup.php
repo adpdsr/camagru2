@@ -24,6 +24,7 @@ dbQuery($dbc, "CREATE TABLE `users` (
 	`mail` VARCHAR(255) UNIQUE NOT NULL,
 	`confirmed` BOOLEAN NOT NULL DEFAULT FALSE,
 	`reseted` BOOLEAN NOT NULL DEFAULT FALSE,
+	`notif` BOOLEAN NOT NULL DEFAULT TRUE,
 	`password` VARCHAR(255) NOT NULL,
 	`newpwd` VARCHAR(255))");
 
@@ -51,5 +52,3 @@ $_SESSION['mail'] = null;
 $_SESSION['login'] = null;
 
 header('Location: ../index.php?page=login');
-
-?>

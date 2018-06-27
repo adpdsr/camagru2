@@ -7,7 +7,8 @@ if (isset($_SESSION['login']))
 	$uploadOk = 1;
 	$user = $_SESSION['login']; 
 	$target_dir = "../img/users/" . $user . "/";
-	if (basename($_FILE["fileToUpload"]["name"]) != null)
+
+	if (basename($_FILES["fileToUpload"]["name"]) != null)
 	{
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -65,23 +66,35 @@ if (isset($_SESSION['login']))
 		/* if everything is ok, try to upload file */
 		else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
 				require_once('../config/database.php');
+
 				$date = date("Y-m-d H:i:s");
+
 				$_SESSION['msg_flash']['success'] = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded";
+
 				$DB = new PDO($DB_DSN, $DB_USR, $DB_PWD);
 				$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 				$stmt = $DB->prepare('INSERT INTO pictures (user, likes, path, date) VALUES (:user, :likes, :path, :date)');
-				$stmt->execute(array(':user' => $user, ':likes' => 0, ':path' => $target_file, ':date' => $date));
+				$stmt->execute([
+					':user'  => $user,
+					':likes' => 0,
+					':path'  => $target_file,
+					':date'  => $date
+				]);
 
 				$DB = null;
 			}
-			else {
+			else
+			{
 				$_SESSION['msg_flash']['alert'] .= " : Une erreur est survenue pendant l'upload";
 			}
 		}
+	} else {
+		var_dump($_POST);
+		die('test3');
 	}
-	header("Location: ../index.php?page=profile");
 
+	header("Location: ../index.php?page=profile");
 }
-?>

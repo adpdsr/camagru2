@@ -25,6 +25,7 @@ else
 	else if (preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/', $password) === 0) {
 		$_SESSION['msg_flash']['alert'] = "Le mot de passe doit contenir entre 8 et 16 caractères, au moins un nombre, une majuscule et une minuscule";
 	}
+
 	if (isset($_SESSION['msg_flash']['alert'])) {
 		header("Location: ../index.php?page=login");
 	}
@@ -53,11 +54,14 @@ else
 			die();
 		}
 
-		send_mail($mail, $login, "confirmation");
+		$res = send_mail($mail, $login, "confirmation");
 
-		$_SESSION['msg_flash']['success'] = "Votre compte a bien été créé, veuillez confirmer votre email !";
+		if ($res) {
+            $_SESSION['msg_flash']['success'] = "Votre compte a bien été créé, veuillez confirmer votre email !";
+		} else {
+            $_SESSION['msg_flash']['alert'] = "Une erreur est survenue, veuillez réessayer.";
+		}
+
 		header("Location: ../index.php?page=login");
 	}
 }
-
-?>

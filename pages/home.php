@@ -7,6 +7,9 @@
 				<video></video>
 				<canvas width="600" height="450"></canvas>
 			</div>
+
+        <!-- todo : rajouter la fonctionnalité d'upload sur cette page, et l'insérer directement dans le cadre une fois l'upload OK -->
+
 		<button id="startbutton">Prendre une photo</button>
 		<button id="savebutton">Sauvegarder la photo</button>
 		<div id="overlays">

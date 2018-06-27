@@ -6,7 +6,6 @@
 
 <?php
 
-
 require('./config/database.php');
 require_once('includes/functions/db_connexion.php');
 
@@ -60,33 +59,43 @@ try
 		// Do we have any results?
 		if ($stmt->rowCount() > 0)
 		{
-			// Define how we want to fetch the results
+            // Define how we want to fetch the results
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$iterator = new IteratorIterator($stmt);
+
 			// Display the results
 			foreach ($iterator as $row)
 			{
 				$pic_name = substr($row['path'], 3);
 				echo "<div class='responsive'>
 					<div class='img'>
-					<a target='' href='pages/test.php?picture=".$pic_name."'><img src='".$pic_name."' alt='' width='300' height='200'></a>
-					<form method='post' action='actions/likes.php' style='margin-bottom:5px;'>
-					<input type='submit' name='".$pic_name."' value='like' style='width:100%; margin-top:5px;'/>
-					</form>
-					<form method='post' action='actions/comment.php' style='margin-bottom:0px;'>
-					<textarea placeholder='type your comment here' style='width: 100%;' name='comment' required></textarea>
-					<input type='submit' name='".$pic_name."'/ style='width:100%; margin-top:5px;'>
-					</form>
+					<a target='' href='pages/test.php?picture=".$pic_name."'><img src='".$pic_name."' alt='' width='300' height='200'></a>";
+
+				if ($_SESSION['login'] !== null) {
+				    echo "
+                        <form method='post' action='actions/likes.php' style='margin-bottom:5px;'>
+                        <input type='submit' name='".$pic_name."' value='like' style='width:100%; margin-top:5px;'/>
+                        </form>
+                        <form method='post' action='actions/comment.php' style='margin-bottom:0px;'>
+                        <textarea placeholder='type your comment here' style='width: 100%;' name='comment' required></textarea>
+                        <input type='submit' name='".$pic_name."'/ style='width:100%; margin-top:5px;'>
+                        </form>";
+				}
+
+				echo "
+                    <br>
+					<span class='badge'>" . $row['likes'] . "</span>
 					</div>
-					</div>";
+					</div>
+                ";
 			}
+
 			echo '<div class="clearfix"></div>';
 			echo '<div style="text-align:center; color: floralwhite; padding: 10px 0 10px 0;margin: 0 6px 0 6px; background-color: #292c2f; border-radius: 10px">';
 			echo '<p>', $prevlink, '&nbsp&nbsp', ' Page ', $page, ' sur ', $pages, '&nbsp&nbsp', $nextlink, '</p></div>';
 			echo "</div>";
 		}
-		else
-		{
+		else {
 			echo '<div><center>Aucunes photos disponibles</center></div>';
 		}
 	}
@@ -95,11 +104,9 @@ try
 		echo '<div><center>Aucunes photos disponibles</center></div>';
 	}
 }
-catch (Exception $e)
-{
+catch (Exception $e) {
 	echo '<p>', $e->getMessage(), '</p>';
 }
-
 
 $dbc = null;
 

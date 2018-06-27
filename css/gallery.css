@@ -47,3 +47,13 @@ div.DESC {
 	display: table;
 	clear: both;
 }
+
+.badge {
+	border-radius: 50%;
+	text-align: center;
+	display: inline-block;
+	padding-left: 8px;
+	padding-right: 8px;
+	background-color: #9bdb37;
+	color: #292c2f;
+}

@@ -26,8 +26,8 @@ if (isset($_SESSION['msg_flash']))
 <div style="background-color:#292c2f; border-radius: 10px; color:floralwhite; margin: 80px 10% 0px 10%; padding: 20px 0 5px 0; text-align:center">
 	<!-- formulaire d'upload -->
 	<form action="actions/upload_picture.php" method="post" enctype="multipart/form-data">
-		Upload :
-		<input type="file" name="fileToUpload" id="fileToUpload">
+        <label for="fileToUpload">Upload :</label>
+		<input type="file" name="fileToUpload" id="fileToUpload" required>
 		<input type="submit" value="Upload Image" name="submit">
 	</form>
 </div>

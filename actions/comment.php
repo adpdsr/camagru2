@@ -23,7 +23,7 @@ if (isset($_POST['comment']) && $_SESSION['login'])
 	$pic_id = $row->id;
 	$pic_usr = $row->user;
 
-	$sql = "SELECT mail, login FROM users WHERE login='".$pic_usr."'";
+	$sql = "SELECT mail, login, notif FROM users WHERE login='".$pic_usr."'";
 	$stm = $dbc->query($sql);
 	$row = $stm->fetchObject();
 
@@ -34,7 +34,9 @@ if (isset($_POST['comment']) && $_SESSION['login'])
 	$sql = "INSERT INTO comments(content, picture_id, user, date) VALUES ('".$com."', '".$pic_id."', '".$usr."', '".$time."')";
 	$dbc->query($sql);
 
-	send_mail($usr_mail, $pic_usr, "comment");
+	if ($row->notif === '1') {
+        send_mail($usr_mail, $pic_usr, "comment");
+	}
 
 	$dbc = null;
 }

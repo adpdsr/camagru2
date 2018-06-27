@@ -97,6 +97,7 @@ if (isset($_SESSION['msg_flash']))
 /************************************/
 /* Affichage ou non des formulaires */
 /************************************/
+
 var modal1 = document.getElementById('id01');
 var modal2 = document.getElementById('id02');
 var modal3 = document.getElementById('id03');
